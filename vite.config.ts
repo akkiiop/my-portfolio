@@ -1,11 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
+const isProd = process.env.NODE_ENV === 'production';
+
 export default defineConfig({
-  base: '/my-portfolio/', // required for GitHub Pages
+  base: isProd ? '/my-portfolio/' : '/', // <-- automatically adjusts paths
   plugins: [react()],
-  optimizeDeps: {
-    exclude: ['lucide-react'], // keep as is if you're using lucide-react
-  },
+  optimizeDeps: { exclude: ['lucide-react'] },
 });
